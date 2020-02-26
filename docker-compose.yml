@@ -7,4 +7,4 @@ services:
     ports:
       - "8181:8181"
     volumes:
-      - /data/cgal:/home/cgal-user/notebooks
+      - ./:/home/cgal-user/notebooks
