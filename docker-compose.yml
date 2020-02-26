@@ -1,0 +1,9 @@
+version: '3'
+services:
+  cgal-bindings-build:
+    build: .
+    container_name: cgal_bindings_build_container
+    ports:
+      - "8181:8181"
+    volumes:
+      - /data/cgal:/notebooks
