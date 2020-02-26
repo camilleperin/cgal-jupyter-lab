@@ -1,9 +1,10 @@
 version: '3'
 services:
-  cgal-bindings-build:
-    build: .
-    container_name: cgal_bindings_build_container
+  cgal-jupyter-lab:
+#    build: .
+    image: zz64/cgal-jupyter-lab
+    container_name: cgal_jupyter_lab_container
     ports:
       - "8181:8181"
     volumes:
-      - /data/cgal:/notebooks
+      - /data/cgal:/home/cgal-user/notebooks

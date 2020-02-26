@@ -4,7 +4,6 @@ FROM ${DISTRIB}:${VERSION}
 
 LABEL maintainer="camille.perin@protonmail.com"
 
-#RUN apt-get update && apt-get -y --no-install-recommends install apt-utils
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         binutils \
@@ -41,11 +40,13 @@ RUN cmake -DCGAL_DIR=../cgal -DBUILD_PYTHON=ON -DBUILD_JAVA=OFF -DCMAKE_BUILD_TY
 RUN make
 
 ENV PYTHONPATH=/app/build/build-python:$PYTHONPATH
-WORKDIR /notebooks
+
 RUN useradd --create-home --shell /bin/bash cgal-user
 USER cgal-user
 ENV PATH /home/cgal-user/.local/bin:$PATH
 RUN pip3 install --user wheel
 RUN pip3 install --user jupyterlab
+
+WORKDIR /home/cgal-user/notebooks
 
 CMD [ "jupyter-lab" , "--ip=0.0.0.0", "--port=8181" ]
